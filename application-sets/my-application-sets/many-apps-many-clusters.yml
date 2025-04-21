@@ -4,29 +4,26 @@ metadata:
   name: cluster-git
 spec:
   generators:
-    # matrix 'parent' generator
     - matrix:
         generators:
-          # git generator, 'child' #1
           - git:
               repoURL: https://github.com/ashal148148/gitops-cert-level-2-examples.git
               revision: HEAD
               directories:
-                - path: ./application-sets/example-apps/*
-          # cluster generator, 'child' #2
+                - path: application-sets/example-apps/*
           - clusters: {}
   template:
     metadata:
-      name: '{{.path.basename}}-{{.name}}'
+      name: '{{path.basename}}-{{name}}'
     spec:
       project: default
       source:
         repoURL: https://github.com/ashal148148/gitops-cert-level-2-examples.git
         targetRevision: HEAD
-        path: '{{.path}}'
+        path: '{{path.path}}'
       destination:
-        server: '{{.server}}'
-        namespace: '{{.path.basename}}'
+        server: '{{server}}'
+        namespace: '{{path.basename}}'
       syncPolicy:
         automated:
           prune: true
