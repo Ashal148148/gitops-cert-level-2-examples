@@ -18,7 +18,7 @@ spec:
       containers:
       - name: webserver-simple
         imagePullPolicy: Always
-        image: ghcr.io/Ashal148148/gitops-cert-level-2-examples:latest
+        image: ghcr.io/ashal148148/gitops-cert-level-2-examples:latest
         ports:
         - containerPort: 8080        
 
